@@ -1,16 +1,16 @@
 var chai = require('chai');
 chai.should();
 
-var db = require('../lib/DataStore').store;
-var Model = require('../lib/Model');
-var User = require('../lib/User');
-var Account = require('../lib/Account');
-var Model = require('../lib/Model');
-var Message = require('../lib/Message');
-var Location = require('../lib/Location');
+var db = require('../lib/DataStore.js').store;
+var Model = require('../lib/Model.js');
+var User = require('../lib/User.js');
+var Account = require('../lib/Account.js');
+var Model = require('../lib/Model.js');
+var Message = require('../lib/Message.js');
+var Location = require('../lib/Location.js');
 
 describe('Model', function() {
-  
+
   var model;
   var testSchema = {
     a : String,
@@ -21,7 +21,7 @@ describe('Model', function() {
   beforeEach(function () {
     model = new Model(testSchema);
   });
-  
+
   describe('constructor', function() {
     it('should accept a single argument `schema` and assign it\'s value to a public property named `schema`', function() {
       model.should.have.property('schema').deep.equal(testSchema);
@@ -30,7 +30,7 @@ describe('Model', function() {
     it('should have a public property named `id` set to `null`', function() {
       model.should.have.property('id').to.equal.null;
     });
-    
+
     it('should set a new public property for each key in `schema`, using the same name as the key, and set to an initial value of null', function() {
       model.should.have.property('a').to.equal.null;
       model.should.have.property('b').to.equal.null;
@@ -46,7 +46,7 @@ describe('Model', function() {
   });
 
   describe('inheritable static methods', function() {
-    
+
     afterEach(function () {
       db.Model = [];
     });
@@ -59,7 +59,7 @@ describe('Model', function() {
       var m1 = new Model();
       m1.a = 'A1';
       m1.save();
-      
+
       var m2 = new Model();
       m2.a = 'A2';
       m2.save();
@@ -67,7 +67,7 @@ describe('Model', function() {
       Model.find(1).should.have.property('a').to.equal('A1');
       Model.find(2).should.have.property('a').to.equal('A2');
     });
-    
+
     it('should have a method named `extend` that accepts a single argument `klass`, and extends each static and prototype method of `Model` onto `klass`', function() {
       function Obj(){
       }
@@ -78,11 +78,11 @@ describe('Model', function() {
       Obj.should.have.property('find');
       Obj.should.have.property('getNextId');
     });
-    
+
   });
 
   describe('prototype', function() {
-    
+
     afterEach(function () {
       db.Model = [];
     });
@@ -91,7 +91,7 @@ describe('Model', function() {
       var m1 = new Model();
       m1.a = 'A1';
       m1.save();
-      
+
       var m2 = new Model();
       m2.a = 'A2';
       m2.save();
@@ -104,23 +104,23 @@ describe('Model', function() {
       var m1 = new Model();
       m1.a = 'A1';
       m1.save();
-      
+
       var m2 = new Model();
       m2.a = 'A2';
       m2.save();
-      
+
       m1.destroy();
       chai.assert.isNull( Model.find(1) );
 
       Model.find(2).should.have.property('a').to.equal('A2');
     });
-    
+
   });
 
 });
 
 describe('User', function() {
-  
+
   describe('is a Model', function() {
     var user;
     beforeEach(function () {
@@ -134,7 +134,7 @@ describe('User', function() {
     it('should set the schema to UserSchema', function() {
       user.should.have.property('schema').to.deep.equal({ username : String, password : String });
     });
-    
+
     it('should set a new public property for each key in `schema`, using the same name as the key, and set to an initial value of null', function() {
       user.should.have.property('username').to.equal.null;
       user.should.have.property('password').to.equal.null;
@@ -154,7 +154,7 @@ describe('User', function() {
       u1.username = 'username1';
       u1.password = 'hunter1';
       u1.save();
-      
+
       u2 = new User();
       u2.username = 'username2';
       u2.password = 'hunter2';
@@ -173,26 +173,26 @@ describe('User', function() {
       db.User[1].should.deep.property('id').to.equal(2);
       db.User[1].should.deep.property('username').to.equal('username2');
       db.User[1].should.deep.property('password').to.equal('hunter2');
-      
+
     });
 
     it('should be "findable"', function() {
       User.find(1).should.have.property('username').to.equal('username1');
       User.find(2).should.have.property('username').to.equal('username2');
     });
-    
+
     it('should be "destroyable"', function() {
       u1.destroy();
       chai.assert.isNull( User.find(1) );
 
       User.find(2).should.have.property('username').to.equal('username2');
-    });  
+    });
   });
 
 });
 
 describe('Account', function() {
-  
+
   describe('is a Model', function() {
     var account;
     beforeEach(function () {
@@ -206,7 +206,7 @@ describe('Account', function() {
     it('should set the schema to AccountSchema', function() {
       account.should.have.property('schema').to.deep.equal({ user : User, accountNumber : Number, address : String, balance : Number });
     });
-    
+
     it('should set a new public property for each key in `schema`, using the same name as the key, and set to an initial value of null', function() {
       account.should.have.property('user').to.equal.null;
       account.should.have.property('accountNumber').to.equal.null;
@@ -240,7 +240,7 @@ describe('Account', function() {
       a1.address = '1234 HI';
       a1.balance = 12.34;
       a1.save();
-      
+
       a2 = new Account();
       a2.user = u2;
       a2.accountNumber = 4567;
@@ -264,26 +264,26 @@ describe('Account', function() {
       db.Account[1].should.deep.property('accountNumber').to.equal(4567);
       db.Account[1].should.deep.property('address').to.equal('4567 HI');
       db.Account[1].should.deep.property('balance').to.equal(45.67);
-      
+
     });
 
     it('should be "findable"', function() {
       Account.find(1).should.have.property('accountNumber').to.equal(1234);
       Account.find(2).should.have.property('accountNumber').to.equal(4567);
     });
-    
+
     it('should be "destroyable"', function() {
       a1.destroy();
       chai.assert.isNull( Account.find(1) );
 
       Account.find(2).should.have.property('accountNumber').to.equal(4567);
-    });  
+    });
   });
 
 });
 
 describe('Message', function() {
-  
+
   describe('is a Model', function() {
     var account;
     beforeEach(function () {
@@ -297,7 +297,7 @@ describe('Message', function() {
     it('should set the schema to AccountSchema', function() {
       account.should.have.property('schema').to.deep.equal({ from : User, to : User, message : String, sent : Date });
     });
-    
+
     it('should set a new public property for each key in `schema`, using the same name as the key, and set to an initial value of null', function() {
       account.should.have.property('from').to.equal.null;
       account.should.have.property('to').to.equal.null;
@@ -331,7 +331,7 @@ describe('Message', function() {
       m1.message = 'hi';
       m1.sent = Date.now();
       m1.save();
-      
+
       m2 = new Message();
       m2.from = u2;
       m2.to = u1;
@@ -361,19 +361,19 @@ describe('Message', function() {
       Message.find(1).should.have.property('message').to.equal('hi');
       Message.find(2).should.have.property('message').to.equal(':)');
     });
-    
+
     it('should be "destroyable"', function() {
       m1.destroy();
       chai.assert.isNull( Message.find(1) );
 
       Message.find(2).should.have.property('message').to.equal(':)');
-    });  
+    });
   });
 
 });
 
 describe('Location', function() {
-  
+
   describe('is a Model', function() {
     var account;
     beforeEach(function () {
@@ -387,7 +387,7 @@ describe('Location', function() {
     it('should set the schema to AccountSchema', function() {
       account.should.have.property('schema').to.deep.equal({ lat : Number, lng : Number });
     });
-    
+
     it('should set a new public property for each key in `schema`, using the same name as the key, and set to an initial value of null', function() {
       account.should.have.property('lat').to.equal.null;
       account.should.have.property('lng').to.equal.null;
@@ -407,7 +407,7 @@ describe('Location', function() {
       l1.lat = 21.308857;
       l1.lng = -157.808458;
       l1.save();
-      
+
       l2 = new Location();
       l2.lat = 21.292034;
       l2.lng = -157.821608;
@@ -430,13 +430,13 @@ describe('Location', function() {
       Location.find(1).should.have.property('lat').to.equal(21.308857);
       Location.find(2).should.have.property('lat').to.equal(21.292034);
     });
-    
+
     it('should be "destroyable"', function() {
       l1.destroy();
       chai.assert.isNull( Location.find(1) );
 
       Location.find(2).should.have.property('lat').to.equal(21.292034);
-    });  
+    });
   });
 
 });
