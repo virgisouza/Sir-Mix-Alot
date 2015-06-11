@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/devleague/Sir-Mix-Alot.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Dev League LLC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/devleague/Sir-Mix-Alot/issues"
   },
