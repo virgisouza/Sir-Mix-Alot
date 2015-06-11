@@ -67,7 +67,7 @@ Will require the `Model` module, and assign it to a temporary variable.
 
 Will declare a new variable named `UserSchema` and assign it's value to a literal object with the following keys and values
 
-`username` = `String`
+`username` = `String`  
 `password` = `String`
 
 The constructor will `call` the `Model` constructor method using `this` as it's context, and `UserSchema` as it's only argument.
@@ -83,9 +83,9 @@ Will require the `User` module, and assign it to a temporary variable.
 
 Will declare a new variable named `AccountSchema` and assign it's value to a literal object with the following keys and values
 
-`user` = `User`
-`accountNumber` = `Number`
-`address` = `String`
+`user` = `User`  
+`accountNumber` = `Number`  
+`address` = `String`  
 `balance` = `Number`
 
 The constructor will `call` the `Model` constructor method using `this` as it's context, and `AccountSchema` as it's only argument.
@@ -101,9 +101,9 @@ Will require the `User` module, and assign it to a temporary variable.
 
 Will declare a new variable named `MessageSchema` and assign it's value to a literal object with the following keys and values
 
-`from` = `User`
-`to` = `User`
-`message` = `String`
+`from` = `User`  
+`to` = `User`  
+`message` = `String`  
 `sent` = `Date`
 
 The constructor will `call` the `Model` constructor method using `this` as it's context, and `MessageSchema` as it's only argument.
@@ -118,7 +118,7 @@ Will require the `Model` module, and assign it to a temporary variable.
 
 Will declare a new variable named `LocationSchema` and assign it's value to a literal object with the following keys and values
 
-`lng` = `Number`
+`lng` = `Number`  
 `lat` = `Number`
 
 The constructor will `call` the `Model` constructor method using `this` as it's context, and `LocationSchema` as it's only argument.
