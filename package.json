@@ -4,7 +4,7 @@
   "description": "Mixin exercise to build a fake ORM",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --watch --bail"
   },
   "repository": {
     "type": "git",
