@@ -1,0 +1,23 @@
+{
+  "name": "sir-mix-alot",
+  "version": "1.0.0",
+  "description": "Mixin exercise to build a fake ORM",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devleague/Sir-Mix-Alot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devleague/Sir-Mix-Alot/issues"
+  },
+  "homepage": "https://github.com/devleague/Sir-Mix-Alot#readme",
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5"
+  }
+}
