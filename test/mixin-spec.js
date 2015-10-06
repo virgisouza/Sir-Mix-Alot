@@ -2,7 +2,6 @@ var chai = require('chai');
 chai.should();
 
 var db = require('../lib/DataStore.js').store;
-var Model = require('../lib/Model.js');
 var User = require('../lib/User.js');
 var Account = require('../lib/Account.js');
 var Model = require('../lib/Model.js');
