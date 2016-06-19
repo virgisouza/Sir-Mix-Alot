@@ -49,13 +49,13 @@ The constructor sets a new default value of an empty array in the datastore usin
 
 Defines the behaviors of instances of classes that inherit from `Model`.
 
-should have a method named `save` that sets it's `id` to the next id in this model's datastore, if this object's `id` is null
+should have a method named `save` that sets it's `id` to the next id in this model's datastore, if this object's `id` is null, and push the new instance that is being saved to the data store collection by the name of the extended modal.
 
-should have a method named `destroy` that removes the stored data object from the datastore for this model, if it has an `id` set
+should have a method named `destroy` that removes the stored data object from the datastore for this model, if it has an `id` set.
 
 ### Inheritable Static Methods
 
-should have a method named `getNextId` that returns the next successive number in the datastore for this model, the highest `id` plus one.
+should have a method named `getNextId` that returns the next successive number in the datastore for this model, the highest `id` plus one. `getNextId` should also return the highest `id` of a single collection in the data store plus one.
 
 should have a method named `find` that accepts a single argument `id` that returns the stored data object in the datastore for this model, having the same `id` value passed in from the `find` argument
 
